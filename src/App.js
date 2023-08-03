@@ -16,11 +16,16 @@ function App() {
    console.log(email,password);
   }
   
-  // onchange 
+  // onchange   = when write every word in email feild or password feild 
 
   const emailHandleChange=event=>{
    console.log(event.target.value);
 
+  }
+
+  // onblur   = when change tab then it see console.log 
+  const handlePasswordBlur=event=>{
+        console.log(event.target.value);
   }
 
 
@@ -28,7 +33,7 @@ function App() {
     <div className="App">
    <form onSubmit={handleSubmit}>
    <input  onChange={emailHandleChange} type="email" name="email" id="" placeholder='inter your email' /> <br />
-    <input type="password" name="password" id=""  placeholder='inter your password'/><br />
+    <input onBlur={handlePasswordBlur}  type="password" name="password" id=""  placeholder='inter your password'/><br />
 
     <button type="submit">Registar</button>
    </form>
