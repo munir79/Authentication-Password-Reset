@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, sendEmailVerification} from 'firebase/auth'
 import app from '../Firebase/Firebase.init';
 import { Link } from 'react-router-dom';
 const auth=getAuth(app);
@@ -46,11 +46,19 @@ const Registar = () => {
                 console.log(user);
                 setSuccess(true);
                 form.reset();
+                veryfyEmail();
              })
              .catch(error=>{
                 console.log('error:',error);
                 setPasswordError(error.message);
              })
+    }
+
+    const veryfyEmail=()=>{
+        sendEmailVerification(auth.currentUser)
+        .then(()=>{
+            alert('please cheek your email and veryfy your email');
+        })
     }
     return (
         <div>
