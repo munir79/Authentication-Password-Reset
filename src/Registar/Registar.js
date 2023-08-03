@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import {createUserWithEmailAndPassword, getAuth} from 'firebase/auth'
 import app from '../Firebase/Firebase.init';
+import { Link } from 'react-router-dom';
 const auth=getAuth(app);
 
 
@@ -58,7 +59,8 @@ const Registar = () => {
                 <input type="password"  name="password"   required id="" placeholder='enter your password' /><br />
                 <p>{passwordError} </p>
                   {success  && <p> successfully created</p> } 
-                <button type="submit">Registar</button>
+                <button type="submit">Registar</button><br />
+                 <p>  already Have an Account?<Link to='/login'>  log in here </Link></p>
               
             </form>
         </div>
