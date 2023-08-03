@@ -10,11 +10,14 @@ const auth=getAuth(app);
 const Registar = () => {
          
     const [passwordError,setPasswordError]=useState('');
+    const [success,setSuccess]=useState(false);
 
     const handleRegistar=(event)=>{
         event.preventDefault();
-        const email=event.target.email.value;
-             const password=event.target.password.value;
+        setSuccess(false);
+        const form=event.target;
+        const email=form.email.value;
+             const password=form.password.value;
              console.log(email,password);
 
              if ( !/(?=.*[A-Z])/.test(password) ){
@@ -40,9 +43,12 @@ const Registar = () => {
              .then(result=>{
                 const user=result.user;
                 console.log(user);
+                setSuccess(true);
+                form.reset();
              })
              .catch(error=>{
                 console.log('error:',error);
+                setPasswordError(error.message);
              })
     }
     return (
@@ -51,7 +57,9 @@ const Registar = () => {
                 <input type="email"   name="email" id=""  required placeholder='enter your email'/> <br />
                 <input type="password"  name="password"   required id="" placeholder='enter your password' /><br />
                 <p>{passwordError} </p>
+                  {success  && <p> successfully created</p> } 
                 <button type="submit">Registar</button>
+              
             </form>
         </div>
     );
