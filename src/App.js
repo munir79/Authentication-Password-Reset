@@ -1,23 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {GoogleAuthProvider, getAuth} from 'firebase/auth'
+import app from './Firebase/Firebase.init';
+const auth =getAuth(app);
 function App() {
+  const provider= new GoogleAuthProvider();
+
+  const handleSubmit=(event)=>{   // 
+    event.preventDefault();
+       // here event.target = form tag 
+                                   // and event.target.email= email feild in form 
+                                   // and event.target.email.value=jakirhossainmunir79@gmail.com
+   const email=event.target.email.value;
+   const password=event.target.password.value;
+   console.log(email,password);
+  }
+  
+  // onchange 
+
+  const emailHandleChange=event=>{
+   console.log(event.target.value);
+
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <form onSubmit={handleSubmit}>
+   <input  onChange={emailHandleChange} type="email" name="email" id="" placeholder='inter your email' /> <br />
+    <input type="password" name="password" id=""  placeholder='inter your password'/><br />
+
+    <button type="submit">Registar</button>
+   </form>
+   
     </div>
   );
 }
